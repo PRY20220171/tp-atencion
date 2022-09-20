@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Table
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Atenciones.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id", scope = Atencion.class)
 public class Atencion  implements Serializable {
 
     @ApiModelProperty(value="ID de la atencion medica", dataType="uuid", position=1)

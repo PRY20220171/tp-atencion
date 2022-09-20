@@ -77,7 +77,7 @@ public class AcompananteController {
         }
         return ResponseEntity.ok(acompananteDelete);
     }
-
+/*
     @Autowired
     ProducerService rabbitMQSender;
 
@@ -86,6 +86,8 @@ public class AcompananteController {
         rabbitMQSender.sendMsg(new Acompanante());
         return "Message sent to the RabbitMQ JavaInUse Successfully";
     }
+
+ */
 
 
 

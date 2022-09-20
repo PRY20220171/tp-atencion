@@ -1,4 +1,4 @@
-package com.example.backatencion.util;
+package com.example.backatenciones.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

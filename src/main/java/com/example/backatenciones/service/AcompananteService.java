@@ -11,6 +11,4 @@ public interface AcompananteService {
     Acompanante createAcompanante(Acompanante acompanante);
     Acompanante updateAcompanante(Acompanante acompanante);
     String deleteAcompanante(UUID id);
-    Acompanante getByDni(Long dni);
-    Acompanante getByDocExtranjeria(Long docnum);
 }

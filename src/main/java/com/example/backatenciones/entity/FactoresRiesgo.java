@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Table
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = FactoresRiesgo.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id", scope = FactoresRiesgo.class)
 public class FactoresRiesgo  implements Serializable {
 
     @ApiModelProperty(value="ID de los factores de riesgo relacionados al motivo de atencion", dataType="uuid", position=1)

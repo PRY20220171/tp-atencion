@@ -23,6 +23,10 @@ public class CentroMedicoServiceImpl implements CentroMedicoService {
     public CentroMedico getCentroMedico(UUID id) {
         return centromedicoRepository.findById(id).orElse(null);
     }
+    @Override
+    public List<CentroMedico> findAllByNombre(String nombre){
+        return centromedicoRepository.findAllByNombre(nombre);
+    }
 
     @Override
     public CentroMedico createCentroMedico(CentroMedico centromedico) {

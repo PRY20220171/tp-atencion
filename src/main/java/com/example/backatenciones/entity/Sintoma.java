@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Table
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Sintoma.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id", scope = Sintoma.class)
 public class Sintoma  implements Serializable {
 
     @ApiModelProperty(value="ID del signo/síntoma", dataType="uuid", position=1)

@@ -18,7 +18,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.backpacientes.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.backatenciones.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
@@ -28,10 +28,10 @@ public class SwaggerConfig {
     public ApiInfo apiInfo() {
 
         return new ApiInfoBuilder()
-                .title("API de ejemplo")
-                .description("API de Pacientes de TBD")
+                .title("API de Atenciones")
+                .description("Microservicio de Atenciones de Salud")
                 .version("1.0")
-                .contact(new Contact("TBD", "", ""))
+                .contact(new Contact("Salud", "", ""))
                 .build();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.backatencion.util;
+package com.example.backatenciones.util;
 import java.io.IOException;
 
 import javax.servlet.Filter;

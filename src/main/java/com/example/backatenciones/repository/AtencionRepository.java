@@ -9,7 +9,7 @@ import java.util.UUID;
 //import org.springframework.data.cassandra.repository.Query;
 //import org.springframework.data.repository.Repository;
 @Repository
-public interface AtencionesRepository extends CrudRepository<Atencion, UUID> {
+public interface AtencionRepository extends CrudRepository<Atencion, UUID> {
     //Atencion findOneById(String id);
     //Atencion findAllByDoctipoAndDocnum(String doctipo, String docnum);
     //@Query("SELECT * from pizza_orders WHERE orderdate = ?0 and zoneid = ?1 ALLOW FILTERING")

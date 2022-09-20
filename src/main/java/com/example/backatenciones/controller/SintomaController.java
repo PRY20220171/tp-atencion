@@ -77,7 +77,7 @@ public class SintomaController {
         }
         return ResponseEntity.ok(sintomaDelete);
     }
-
+/*
     @Autowired
     ProducerService rabbitMQSender;
 
@@ -86,6 +86,8 @@ public class SintomaController {
         rabbitMQSender.sendMsg(new Sintoma());
         return "Message sent to the RabbitMQ JavaInUse Successfully";
     }
+
+ */
 
 
 

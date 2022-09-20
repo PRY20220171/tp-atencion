@@ -1,4 +1,4 @@
-package com.example.backatencion.util;
+package com.example.backatenciones.util;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

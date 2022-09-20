@@ -77,7 +77,7 @@ public class CentroMedicoController {
         }
         return ResponseEntity.ok(centroMedicoDelete);
     }
-
+/*
     @Autowired
     ProducerService rabbitMQSender;
 
@@ -86,6 +86,8 @@ public class CentroMedicoController {
         rabbitMQSender.sendMsg(new CentroMedico());
         return "Message sent to the RabbitMQ JavaInUse Successfully";
     }
+
+ */
 
 
 

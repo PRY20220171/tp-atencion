@@ -81,10 +81,13 @@ public class AtencionController {
     @Autowired
     ProducerService rabbitMQSender;
 
-    @GetMapping(value = "/test")
-    public String producer() {
-        rabbitMQSender.sendMsg(new Atencion());
-        return "Message sent to the RabbitMQ JavaInUse Successfully";
+    @GetMapping(value = "/test/{id}")
+    public ResponseEntity<Atencion> producer(@PathVariable("id") String id) {
+        Atencion atencion = rabbitMQSender.sendMsg(id);
+        if(atencion==null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(atencion);
     }
 
 

@@ -77,7 +77,7 @@ public class FactoresRiesgoController {
         }
         return ResponseEntity.ok(factoresriesgoDelete);
     }
-
+/*
     @Autowired
     ProducerService rabbitMQSender;
 
@@ -86,6 +86,8 @@ public class FactoresRiesgoController {
         rabbitMQSender.sendMsg(new FactoresRiesgo());
         return "Message sent to the RabbitMQ JavaInUse Successfully";
     }
+
+ */
 
 
 
