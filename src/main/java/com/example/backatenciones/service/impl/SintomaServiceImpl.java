@@ -48,9 +48,9 @@ public class SintomaServiceImpl implements SintomaService {
         if (sintomaDB == null) {
             return null;
         }
-        try{
+        try {
             sintomaRepository.delete(sintomaDB);
-        }catch (Exception e){
+        } catch (Exception e) {
             return "ERROR INTERNO";
         }
         return "ELIMINADO CON EXITO";

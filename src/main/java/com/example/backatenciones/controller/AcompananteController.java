@@ -28,31 +28,30 @@ public class AcompananteController {
     @Autowired
     private AcompananteService acompananteService;
 
-    @ApiOperation(value="Obtener un producto por su ID", notes="Provee un mecanismo para obtener todos los datos de un acompanante por su ID")
-    @ApiResponses(value= {
-            @ApiResponse(code=200, message="OK", response=Acompanante.class),
-            @ApiResponse(code=404, message="Not Found", response= ErrorMessage.class),
-            @ApiResponse(code=500, message="Internal Server Error", response=ErrorMessage.class)
+    @ApiOperation(value = "Obtener un producto por su ID", notes = "Provee un mecanismo para obtener todos los datos de un acompanante por su ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = Acompanante.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
     })
     @GetMapping
-    public ResponseEntity<List<Acompanante>> listAcompanante(@RequestParam(name="idacompanante",required = false) String idAcompanante){
-        List<Acompanante> acompanantes=new ArrayList<>();
-        if(null==idAcompanante){
-            acompanantes=acompananteService.findAcompananteAll();
-            if(acompanantes.isEmpty()){
+    public ResponseEntity<List<Acompanante>> listAcompanante(@RequestParam(name = "idacompanante", required = false) String idAcompanante) {
+        List<Acompanante> acompanantes = new ArrayList<>();
+        if (null == idAcompanante) {
+            acompanantes = acompananteService.findAcompananteAll();
+            if (acompanantes.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
-        }
-        else{
+        } else {
             acompanantes = Collections.singletonList(acompananteService.getAcompanante(UUID.fromString(idAcompanante)));
         }
         return ResponseEntity.ok(acompanantes);
     }
 
     @PostMapping
-    public ResponseEntity<Acompanante> createAcompanante(@Valid @RequestBody Acompanante acompanante, BindingResult result){
+    public ResponseEntity<Acompanante> createAcompanante(@Valid @RequestBody Acompanante acompanante, BindingResult result) {
         acompanante.setId(Uuids.timeBased());
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Message.formatMessage(result));
         }
         Acompanante acompanantecreate = acompananteService.createAcompanante(acompanante);
@@ -60,19 +59,19 @@ public class AcompananteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Acompanante> updateAcompanante(@PathVariable("id") String id, @RequestBody Acompanante acompanante){
+    public ResponseEntity<Acompanante> updateAcompanante(@PathVariable("id") String id, @RequestBody Acompanante acompanante) {
         acompanante.setId(UUID.fromString(id));
-        Acompanante acompananteDB=acompananteService.updateAcompanante(acompanante);
-        if(acompananteDB==null){
+        Acompanante acompananteDB = acompananteService.updateAcompanante(acompanante);
+        if (acompananteDB == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(acompananteDB);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteAcompanante(@PathVariable("id") String id){
-        String acompananteDelete=acompananteService.deleteAcompanante(UUID.fromString(id));
-        if(acompananteDelete==null){
+    public ResponseEntity<String> deleteAcompanante(@PathVariable("id") String id) {
+        String acompananteDelete = acompananteService.deleteAcompanante(UUID.fromString(id));
+        if (acompananteDelete == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(acompananteDelete);
@@ -88,7 +87,6 @@ public class AcompananteController {
     }
 
  */
-
 
 
 }

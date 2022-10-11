@@ -24,14 +24,14 @@ public class ProducerServiceImpl implements ProducerService {
     private String routingkey;
 
     private ObjectMapper objectMapper = new ObjectMapper();
+
     @Override
     public Atencion sendMsg(String idAtencion) {
-        try{
+        try {
             Object response = amqpTemplate.convertSendAndReceive(exchange.getName(), routingkey, idAtencion);
-            if(response!=null){
+            if (response != null) {
                 return objectMapper.readValue(response.toString(), Atencion.class);
-            }
-            else{
+            } else {
                 return null;
             }
         } catch (Exception e) {

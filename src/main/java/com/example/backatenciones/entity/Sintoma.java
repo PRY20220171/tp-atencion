@@ -1,4 +1,5 @@
 package com.example.backatenciones.entity;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,9 +29,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Table
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id", scope = Sintoma.class)
-public class Sintoma  implements Serializable {
+public class Sintoma implements Serializable {
 
-    @ApiModelProperty(value="ID del signo/síntoma", dataType="uuid", position=1)
+    @ApiModelProperty(value = "ID del signo/síntoma", dataType = "uuid", position = 1)
     @Id
     @Column("idsintoma")
     @CassandraType(type = CassandraType.Name.UUID)
@@ -38,14 +39,13 @@ public class Sintoma  implements Serializable {
     @PrimaryKey
     private UUID id;
 
-    @ApiModelProperty(value="Es el ID de la atencion medica", dataType="uuid", position=2)
-    @NotEmpty(message = "El ID de la atencion no puede ser vacio")
+    @ApiModelProperty(value = "Es el ID de la atencion medica", dataType = "uuid", position = 2)
     @NotNull(message = "El ID de la atencion no puede ser nulo")
     @Column("idatencion")
     @CassandraType(type = CassandraType.Name.UUID)
     private UUID idatencion;
 
-    @ApiModelProperty(value="Es el nombre y detalle del signo o síntoma", dataType="ascii", position=3)
+    @ApiModelProperty(value = "Es el nombre y detalle del signo o síntoma", dataType = "ascii", position = 3)
     @NotEmpty(message = "La signo o síntoma no puede ser vacio")
     @NotNull(message = "La signo o síntoma no puede ser nulo")
     @Column("signossintomas")

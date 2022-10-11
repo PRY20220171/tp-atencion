@@ -28,31 +28,30 @@ public class SintomaController {
     @Autowired
     private SintomaService sintomaService;
 
-    @ApiOperation(value="Obtener un sintoma por su ID", notes="Provee un mecanismo para obtener todos los datos de un sintoma por su ID")
-    @ApiResponses(value= {
-            @ApiResponse(code=200, message="OK", response=Sintoma.class),
-            @ApiResponse(code=404, message="Not Found", response= ErrorMessage.class),
-            @ApiResponse(code=500, message="Internal Server Error", response=ErrorMessage.class)
+    @ApiOperation(value = "Obtener un sintoma por su ID", notes = "Provee un mecanismo para obtener todos los datos de un sintoma por su ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = Sintoma.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
     })
     @GetMapping
-    public ResponseEntity<List<Sintoma>> listSintoma(@RequestParam(name="idsintoma",required = false) String idSintoma){
-        List<Sintoma> sintomas=new ArrayList<>();
-        if(null==idSintoma){
-            sintomas=sintomaService.findSintomaAll();
-            if(sintomas.isEmpty()){
+    public ResponseEntity<List<Sintoma>> listSintoma(@RequestParam(name = "idsintoma", required = false) String idSintoma) {
+        List<Sintoma> sintomas = new ArrayList<>();
+        if (null == idSintoma) {
+            sintomas = sintomaService.findSintomaAll();
+            if (sintomas.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
-        }
-        else{
+        } else {
             sintomas = Collections.singletonList(sintomaService.getSintoma(UUID.fromString(idSintoma)));
         }
         return ResponseEntity.ok(sintomas);
     }
 
     @PostMapping
-    public ResponseEntity<Sintoma> createSintoma(@Valid @RequestBody Sintoma sintoma, BindingResult result){
+    public ResponseEntity<Sintoma> createSintoma(@Valid @RequestBody Sintoma sintoma, BindingResult result) {
         sintoma.setId(Uuids.timeBased());
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Message.formatMessage(result));
         }
         Sintoma sintomacreate = sintomaService.createSintoma(sintoma);
@@ -60,19 +59,19 @@ public class SintomaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Sintoma> updateSintoma(@PathVariable("id") String id, @RequestBody Sintoma sintoma){
+    public ResponseEntity<Sintoma> updateSintoma(@PathVariable("id") String id, @RequestBody Sintoma sintoma) {
         sintoma.setId(UUID.fromString(id));
-        Sintoma sintomaDB=sintomaService.updateSintoma(sintoma);
-        if(sintomaDB==null){
+        Sintoma sintomaDB = sintomaService.updateSintoma(sintoma);
+        if (sintomaDB == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(sintomaDB);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteSintoma(@PathVariable("id") String id){
-        String sintomaDelete=sintomaService.deleteSintoma(UUID.fromString(id));
-        if(sintomaDelete==null){
+    public ResponseEntity<String> deleteSintoma(@PathVariable("id") String id) {
+        String sintomaDelete = sintomaService.deleteSintoma(UUID.fromString(id));
+        if (sintomaDelete == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(sintomaDelete);
@@ -88,7 +87,6 @@ public class SintomaController {
     }
 
  */
-
 
 
 }

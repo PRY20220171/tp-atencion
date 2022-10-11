@@ -1,4 +1,5 @@
 package com.example.backatenciones.entity;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,9 +29,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Table
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id", scope = Atencion.class)
-public class Atencion  implements Serializable {
+public class Atencion implements Serializable {
 
-    @ApiModelProperty(value="ID de la atencion medica", dataType="uuid", position=1)
+    @ApiModelProperty(value = "ID de la atencion medica", dataType = "uuid", position = 1)
     @Id
     @Column("idatencion")
     @CassandraType(type = CassandraType.Name.UUID)
@@ -38,78 +39,72 @@ public class Atencion  implements Serializable {
     @PrimaryKey
     private UUID id;
 
-    @ApiModelProperty(value="Es el identificador del paciente", dataType="uuid", position=2)
-    @NotEmpty(message = "El identificador del paciente no puede ser vacio")
+    @ApiModelProperty(value = "Es el identificador del paciente", dataType = "uuid", position = 2)
     @NotNull(message = "El identificador del paciente no puede ser nulo")
     @Column("idpaciente")
     @CassandraType(type = CassandraType.Name.UUID)
     private UUID idpaciente;
 
-    @ApiModelProperty(value="Es el identificador del usuario que registro la atencion", dataType="uuid", position=3)
-    @NotEmpty(message = "El identificador del usuario no puede ser vacio")
+    @ApiModelProperty(value = "Es el identificador del usuario que registro la atencion", dataType = "uuid", position = 3)
     @NotNull(message = "el identificador del usuario no puede ser nulo")
     @Column("idusuarioregistro")
     @CassandraType(type = CassandraType.Name.UUID)
     private UUID idusuarioregistro;
 
-    @ApiModelProperty(value="Es la fecha en la que se dio la atencion del paciente", dataType="timestamp", position=4)
-    @NotEmpty(message = "La fecha de registro no puede ser vacio")
+    @ApiModelProperty(value = "Es la fecha en la que se dio la atencion del paciente", dataType = "timestamp", position = 4)
     @NotNull(message = "La fecha de registro no puede ser nulo")
-    @Column( "fecharegistro")
+    @Column("fecharegistro")
     @CassandraType(type = CassandraType.Name.TIMESTAMP)
-    private String fecharegistro;
+    private Date fecharegistro;
 
-    @ApiModelProperty(value="Es la descripcion del motivo de la atencion", dataType="text", position=5)
+    @ApiModelProperty(value = "Es la descripcion del motivo de la atencion", dataType = "text", position = 5)
     @NotEmpty(message = "El motivo de la consulta no puede ser vacio")
     @NotNull(message = "El motivo de la consulta no puede ser nulo")
     @Column("motivoconsulta")
     @CassandraType(type = CassandraType.Name.TEXT)
     private String motivoconsulta;
 
-    @ApiModelProperty(value="Son las observaciones de la atencion dada", dataType="text", position=6)
+    @ApiModelProperty(value = "Son las observaciones de la atencion dada", dataType = "text", position = 6)
     @NotEmpty(message = "Las observaciones no pueden ser vacio")
     @NotNull(message = "Las observaciones no pueden ser nulo")
     @Column("observaciones")
     @CassandraType(type = CassandraType.Name.TEXT)
     private String observaciones;
 
-    @ApiModelProperty(value="Es el tiempo en el que el paciente lleva padeciendo los sintomas por los que se atiende", dataType="ascii", position=7)
+    @ApiModelProperty(value = "Es el tiempo en el que el paciente lleva padeciendo los sintomas por los que se atiende", dataType = "ascii", position = 7)
     @NotEmpty(message = "El tiempo de enfermedad no puede ser vacio")
     @NotNull(message = "El tiempo de enfermedad no puede ser nulo")
     @Column("tiempoenfermedad")
     @CassandraType(type = CassandraType.Name.ASCII)
     private String tiempoenfermedad;
 
-    @ApiModelProperty(value="Es la forma en la que iniciaron los sintomas que padece el paciente", dataType="text", position=8)
+    @ApiModelProperty(value = "Es la forma en la que iniciaron los sintomas que padece el paciente", dataType = "text", position = 8)
     @NotEmpty(message = "La forma de inicio no puede ser vacio")
     @NotNull(message = "La forma de inicio no puede ser nulo")
     @Column("formainicio")
     @CassandraType(type = CassandraType.Name.TEXT)
     private String formainicio;
 
-    @ApiModelProperty(value="Es la forma en la que se desarrolla la enfermedad del paciente", dataType="ascii", position=9)
+    @ApiModelProperty(value = "Es la forma en la que se desarrolla la enfermedad del paciente", dataType = "ascii", position = 9)
     @NotEmpty(message = "El curso de la enfermedad no puede ser vacio")
     @NotNull(message = "El curso de la enfermedad no puede ser nulo")
-    @Column( "curso")
+    @Column("curso")
     @CassandraType(type = CassandraType.Name.ASCII)
     private String curso;
 
-    @ApiModelProperty(value="Es el identificador del acompanante del paciente", dataType="uuid", position=10)
-    @NotEmpty(message = "El ID del acompanante no puede ser vacio")
+    @ApiModelProperty(value = "Es el identificador del acompanante del paciente", dataType = "uuid", position = 10)
     @NotNull(message = "El ID del acompanante no puede ser nulo")
     @Column("idacompanante")
     @CassandraType(type = CassandraType.Name.UUID)
     private UUID idacompanante;
 
-    @ApiModelProperty(value="Es el identificador de los factores de riesgo relacionados al motivo de atencion", dataType="uuid", position=11)
-    @NotEmpty(message = "El ID de los factores de riesgo no puede ser vacio")
+    @ApiModelProperty(value = "Es el identificador de los factores de riesgo relacionados al motivo de atencion", dataType = "uuid", position = 11)
     @NotNull(message = "El ID de los factores de riesgo no puede ser nulo")
     @Column("idfacriesgo")
     @CassandraType(type = CassandraType.Name.UUID)
     private UUID idfacriesgo;
-    
-    @ApiModelProperty(value="Es el identificador del centro médico en el que se realiza la atencion", dataType="uuid", position=12)
-    @NotEmpty(message = "El ID del centro médico no puede ser vacio")
+
+    @ApiModelProperty(value = "Es el identificador del centro médico en el que se realiza la atencion", dataType = "uuid", position = 12)
     @NotNull(message = "El ID del centro médico no puede ser nulo")
     @Column("idcentromedic")
     @CassandraType(type = CassandraType.Name.UUID)

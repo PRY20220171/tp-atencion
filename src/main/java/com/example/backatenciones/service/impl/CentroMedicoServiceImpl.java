@@ -23,8 +23,9 @@ public class CentroMedicoServiceImpl implements CentroMedicoService {
     public CentroMedico getCentroMedico(UUID id) {
         return centromedicoRepository.findById(id).orElse(null);
     }
+
     @Override
-    public List<CentroMedico> findAllByNombre(String nombre){
+    public List<CentroMedico> findAllByNombre(String nombre) {
         return centromedicoRepository.findAllByNombre(nombre);
     }
 
@@ -53,9 +54,9 @@ public class CentroMedicoServiceImpl implements CentroMedicoService {
         if (centromedicoDB == null) {
             return null;
         }
-        try{
+        try {
             centromedicoRepository.delete(centromedicoDB);
-        }catch (Exception e){
+        } catch (Exception e) {
             return "ERROR INTERNO";
         }
         return "ELIMINADO CON EXITO";

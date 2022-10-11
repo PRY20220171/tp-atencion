@@ -57,9 +57,9 @@ public class AtencionServiceImpl implements AtencionService {
         if (atencionDB == null) {
             return null;
         }
-        try{
+        try {
             atencionRepository.delete(atencionDB);
-        }catch (Exception e){
+        } catch (Exception e) {
             return "ERROR INTERNO";
         }
         return "ELIMINADO CON EXITO";

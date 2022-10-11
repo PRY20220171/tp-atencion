@@ -28,31 +28,30 @@ public class AtencionController {
     @Autowired
     private AtencionService atencionService;
 
-    @ApiOperation(value="Obtener un producto por su ID", notes="Provee un mecanismo para obtener todos los datos de una atencion por su ID")
-    @ApiResponses(value= {
-            @ApiResponse(code=200, message="OK", response=Atencion.class),
-            @ApiResponse(code=404, message="Not Found", response= ErrorMessage.class),
-            @ApiResponse(code=500, message="Internal Server Error", response=ErrorMessage.class)
+    @ApiOperation(value = "Obtener un producto por su ID", notes = "Provee un mecanismo para obtener todos los datos de una atencion por su ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = Atencion.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
     })
     @GetMapping
-    public ResponseEntity<List<Atencion>> listAtencion(@RequestParam(name="idatencion",required = false) String idAtencion){
-        List<Atencion> atenciones=new ArrayList<>();
-        if(null==idAtencion){
-            atenciones=atencionService.findAtencionAll();
-            if(atenciones.isEmpty()){
+    public ResponseEntity<List<Atencion>> listAtencion(@RequestParam(name = "idatencion", required = false) String idAtencion) {
+        List<Atencion> atenciones = new ArrayList<>();
+        if (null == idAtencion) {
+            atenciones = atencionService.findAtencionAll();
+            if (atenciones.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
-        }
-        else{
+        } else {
             atenciones = Collections.singletonList(atencionService.getAtencion(UUID.fromString(idAtencion)));
         }
         return ResponseEntity.ok(atenciones);
     }
 
     @PostMapping
-    public ResponseEntity<Atencion> createAtencion(@Valid @RequestBody Atencion atencion, BindingResult result){
+    public ResponseEntity<Atencion> createAtencion(@Valid @RequestBody Atencion atencion, BindingResult result) {
         atencion.setId(Uuids.timeBased());
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Message.formatMessage(result));
         }
         Atencion atencioncreate = atencionService.createAtencion(atencion);
@@ -60,19 +59,19 @@ public class AtencionController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Atencion> updateAtencion(@PathVariable("id") String id, @RequestBody Atencion atencion){
+    public ResponseEntity<Atencion> updateAtencion(@PathVariable("id") String id, @RequestBody Atencion atencion) {
         atencion.setId(UUID.fromString(id));
-        Atencion atencionDB=atencionService.updateAtencion(atencion);
-        if(atencionDB==null){
+        Atencion atencionDB = atencionService.updateAtencion(atencion);
+        if (atencionDB == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(atencionDB);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteAtencion(@PathVariable("id") String id){
-        String atencionDelete=atencionService.deleteAtencion(UUID.fromString(id));
-        if(atencionDelete==null){
+    public ResponseEntity<String> deleteAtencion(@PathVariable("id") String id) {
+        String atencionDelete = atencionService.deleteAtencion(UUID.fromString(id));
+        if (atencionDelete == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(atencionDelete);
@@ -84,12 +83,11 @@ public class AtencionController {
     @GetMapping(value = "/test/{id}")
     public ResponseEntity<Atencion> producer(@PathVariable("id") String id) {
         Atencion atencion = rabbitMQSender.sendMsg(id);
-        if(atencion==null){
+        if (atencion == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(atencion);
     }
-
 
 
 }

@@ -1,4 +1,5 @@
 package com.example.backatenciones.entity;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,9 +29,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Table
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id", scope = CentroMedico.class)
-public class CentroMedico  implements Serializable {
+public class CentroMedico implements Serializable {
 
-    @ApiModelProperty(value="ID del centro médico", dataType="uuid", position=1)
+    @ApiModelProperty(value = "ID del centro médico", dataType = "uuid", position = 1)
     @Id
     @Column("idcentromedic")
     @CassandraType(type = CassandraType.Name.UUID)
@@ -38,24 +39,23 @@ public class CentroMedico  implements Serializable {
     @PrimaryKey
     private UUID id;
 
-    @ApiModelProperty(value="Es el identificador de la ubicacion del centro médico", dataType="UUID", position=2)
-    @NotEmpty(message = "El ID de la ubicacion no puede ser vacio")
+    @ApiModelProperty(value = "Es el identificador de la ubicacion del centro médico", dataType = "UUID", position = 2)
     @NotNull(message = "El ID de la ubicacion no puede ser nulo")
     @Column("idubicacion")
     @CassandraType(type = CassandraType.Name.UUID)
     private UUID idubicacion;
 
-    @ApiModelProperty(value="Es el nombre del centro médico", dataType="ascii", position=3)
+    @ApiModelProperty(value = "Es el nombre del centro médico", dataType = "ascii", position = 3)
     @NotEmpty(message = "El nombre no puede ser vacio")
     @NotNull(message = "El nombre no puede ser nulo")
     @Column("nombre")
     @CassandraType(type = CassandraType.Name.ASCII)
     private String nombre;
 
-    @ApiModelProperty(value="Es el sector del centro médico - privado/estatal", dataType="ascii", position=4)
+    @ApiModelProperty(value = "Es el sector del centro médico - privado/estatal", dataType = "ascii", position = 4)
     @NotEmpty(message = "La sector no puede ser vacio")
     @NotNull(message = "La sector no puede ser nulo")
-    @Column( "sector")
+    @Column("sector")
     @CassandraType(type = CassandraType.Name.ASCII)
     private String sector;
 

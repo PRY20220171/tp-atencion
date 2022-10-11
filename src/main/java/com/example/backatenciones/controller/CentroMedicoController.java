@@ -28,31 +28,30 @@ public class CentroMedicoController {
     @Autowired
     private CentroMedicoService centroMedicoService;
 
-    @ApiOperation(value="Obtener un producto por su ID", notes="Provee un mecanismo para obtener todos los datos de un centro medico por su ID")
-    @ApiResponses(value= {
-            @ApiResponse(code=200, message="OK", response=CentroMedico.class),
-            @ApiResponse(code=404, message="Not Found", response= ErrorMessage.class),
-            @ApiResponse(code=500, message="Internal Server Error", response=ErrorMessage.class)
+    @ApiOperation(value = "Obtener un producto por su ID", notes = "Provee un mecanismo para obtener todos los datos de un centro medico por su ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = CentroMedico.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
     })
     @GetMapping
-    public ResponseEntity<List<CentroMedico>> listCentroMedico(@RequestParam(name="idcentromedic",required = false) String idcentromedic){
-        List<CentroMedico> centrosMedicos=new ArrayList<>();
-        if(null==idcentromedic){
-            centrosMedicos=centroMedicoService.findCentroMedicoAll();
-            if(centrosMedicos.isEmpty()){
+    public ResponseEntity<List<CentroMedico>> listCentroMedico(@RequestParam(name = "idcentromedic", required = false) String idcentromedic) {
+        List<CentroMedico> centrosMedicos = new ArrayList<>();
+        if (null == idcentromedic) {
+            centrosMedicos = centroMedicoService.findCentroMedicoAll();
+            if (centrosMedicos.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
-        }
-        else{
+        } else {
             centrosMedicos = Collections.singletonList(centroMedicoService.getCentroMedico(UUID.fromString(idcentromedic)));
         }
         return ResponseEntity.ok(centrosMedicos);
     }
 
     @PostMapping
-    public ResponseEntity<CentroMedico> createCentroMedico(@Valid @RequestBody CentroMedico centroMedico, BindingResult result){
+    public ResponseEntity<CentroMedico> createCentroMedico(@Valid @RequestBody CentroMedico centroMedico, BindingResult result) {
         centroMedico.setId(Uuids.timeBased());
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Message.formatMessage(result));
         }
         CentroMedico centroMedicocreate = centroMedicoService.createCentroMedico(centroMedico);
@@ -60,19 +59,19 @@ public class CentroMedicoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CentroMedico> updateCentroMedico(@PathVariable("id") String id, @RequestBody CentroMedico centroMedico){
+    public ResponseEntity<CentroMedico> updateCentroMedico(@PathVariable("id") String id, @RequestBody CentroMedico centroMedico) {
         centroMedico.setId(UUID.fromString(id));
-        CentroMedico centroMedicoDB=centroMedicoService.updateCentroMedico(centroMedico);
-        if(centroMedicoDB==null){
+        CentroMedico centroMedicoDB = centroMedicoService.updateCentroMedico(centroMedico);
+        if (centroMedicoDB == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(centroMedicoDB);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCentroMedico(@PathVariable("id") String id){
-        String centroMedicoDelete=centroMedicoService.deleteCentroMedico(UUID.fromString(id));
-        if(centroMedicoDelete==null){
+    public ResponseEntity<String> deleteCentroMedico(@PathVariable("id") String id) {
+        String centroMedicoDelete = centroMedicoService.deleteCentroMedico(UUID.fromString(id));
+        if (centroMedicoDelete == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(centroMedicoDelete);
@@ -88,7 +87,6 @@ public class CentroMedicoController {
     }
 
  */
-
 
 
 }

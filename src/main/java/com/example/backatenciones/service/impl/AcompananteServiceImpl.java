@@ -55,9 +55,9 @@ public class AcompananteServiceImpl implements AcompananteService {
         if (acompananteDB == null) {
             return null;
         }
-        try{
+        try {
             acompananteRepository.delete(acompananteDB);
-        }catch (Exception e){
+        } catch (Exception e) {
             return "ERROR INTERNO";
         }
         return "ELIMINADO CON EXITO";

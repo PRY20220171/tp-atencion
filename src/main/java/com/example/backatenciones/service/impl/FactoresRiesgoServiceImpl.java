@@ -54,9 +54,9 @@ public class FactoresRiesgoServiceImpl implements FactoresRiesgoService {
         if (factoresriesgoDB == null) {
             return null;
         }
-        try{
+        try {
             factoresriesgoRepository.delete(factoresriesgoDB);
-        }catch (Exception e){
+        } catch (Exception e) {
             return "ERROR INTERNO";
         }
         return "ELIMINADO CON EXITO";

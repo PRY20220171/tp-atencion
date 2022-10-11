@@ -28,31 +28,30 @@ public class FactoresRiesgoController {
     @Autowired
     private FactoresRiesgoService factoresriesgoService;
 
-    @ApiOperation(value="Obtener un producto por su ID", notes="Provee un mecanismo para obtener todos los factores de riesgo por su ID")
-    @ApiResponses(value= {
-            @ApiResponse(code=200, message="OK", response=FactoresRiesgo.class),
-            @ApiResponse(code=404, message="Not Found", response= ErrorMessage.class),
-            @ApiResponse(code=500, message="Internal Server Error", response=ErrorMessage.class)
+    @ApiOperation(value = "Obtener un producto por su ID", notes = "Provee un mecanismo para obtener todos los factores de riesgo por su ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = FactoresRiesgo.class),
+            @ApiResponse(code = 404, message = "Not Found", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class)
     })
     @GetMapping
-    public ResponseEntity<List<FactoresRiesgo>> listFactoresRiesgo(@RequestParam(name="idfacriesgo",required = false) String idFacriesgo){
-        List<FactoresRiesgo> factoresriesgos=new ArrayList<>();
-        if(null==idFacriesgo){
-            factoresriesgos=factoresriesgoService.findFactoresRiesgoAll();
-            if(factoresriesgos.isEmpty()){
+    public ResponseEntity<List<FactoresRiesgo>> listFactoresRiesgo(@RequestParam(name = "idfacriesgo", required = false) String idFacriesgo) {
+        List<FactoresRiesgo> factoresriesgos = new ArrayList<>();
+        if (null == idFacriesgo) {
+            factoresriesgos = factoresriesgoService.findFactoresRiesgoAll();
+            if (factoresriesgos.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
-        }
-        else{
+        } else {
             factoresriesgos = Collections.singletonList(factoresriesgoService.getFactoresRiesgo(UUID.fromString(idFacriesgo)));
         }
         return ResponseEntity.ok(factoresriesgos);
     }
 
     @PostMapping
-    public ResponseEntity<FactoresRiesgo> createFactoresRiesgo(@Valid @RequestBody FactoresRiesgo factoresriesgo, BindingResult result){
+    public ResponseEntity<FactoresRiesgo> createFactoresRiesgo(@Valid @RequestBody FactoresRiesgo factoresriesgo, BindingResult result) {
         factoresriesgo.setId(Uuids.timeBased());
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Message.formatMessage(result));
         }
         FactoresRiesgo factoresriesgocreate = factoresriesgoService.createFactoresRiesgo(factoresriesgo);
@@ -60,19 +59,19 @@ public class FactoresRiesgoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FactoresRiesgo> updateFactoresRiesgo(@PathVariable("id") String id, @RequestBody FactoresRiesgo factoresriesgo){
+    public ResponseEntity<FactoresRiesgo> updateFactoresRiesgo(@PathVariable("id") String id, @RequestBody FactoresRiesgo factoresriesgo) {
         factoresriesgo.setId(UUID.fromString(id));
-        FactoresRiesgo factoresriesgoDB=factoresriesgoService.updateFactoresRiesgo(factoresriesgo);
-        if(factoresriesgoDB==null){
+        FactoresRiesgo factoresriesgoDB = factoresriesgoService.updateFactoresRiesgo(factoresriesgo);
+        if (factoresriesgoDB == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(factoresriesgoDB);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteFactoresRiesgo(@PathVariable("id") String id){
-        String factoresriesgoDelete=factoresriesgoService.deleteFactoresRiesgo(UUID.fromString(id));
-        if(factoresriesgoDelete==null){
+    public ResponseEntity<String> deleteFactoresRiesgo(@PathVariable("id") String id) {
+        String factoresriesgoDelete = factoresriesgoService.deleteFactoresRiesgo(UUID.fromString(id));
+        if (factoresriesgoDelete == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(factoresriesgoDelete);
@@ -88,7 +87,6 @@ public class FactoresRiesgoController {
     }
 
  */
-
 
 
 }
