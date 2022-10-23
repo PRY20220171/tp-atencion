@@ -47,7 +47,7 @@ public class AtencionServiceImpl implements AtencionService {
         atencionDB.setCurso(atencion.getCurso());
         atencionDB.setIdacompanante(atencion.getIdacompanante());
         atencionDB.setIdfacriesgo(atencion.getIdfacriesgo());
-        atencionDB.setIdcentromedic(atencion.getIdcentromedic());
+        atencionDB.setIdcentromedico(atencion.getIdcentromedico());
         return atencionRepository.save(atencion);
     }
 
