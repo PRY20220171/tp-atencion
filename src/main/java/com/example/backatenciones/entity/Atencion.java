@@ -28,7 +28,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Table
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id", scope = Atencion.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Atencion.class)
 public class Atencion implements Serializable {
 
     @ApiModelProperty(value = "ID de la atencion medica", dataType = "uuid", position = 1)
@@ -44,6 +44,8 @@ public class Atencion implements Serializable {
     @Column("idpaciente")
     @CassandraType(type = CassandraType.Name.UUID)
     private UUID idpaciente;
+    @Transient
+    private Paciente paciente;
 
     @ApiModelProperty(value = "Es el identificador del usuario que registro la atencion", dataType = "uuid", position = 3)
     @NotNull(message = "el identificador del usuario no puede ser nulo")

@@ -77,7 +77,7 @@ public class AtencionController {
         return ResponseEntity.ok(atencionDelete);
     }
 
-    @Autowired
+    /*@Autowired
     ProducerService rabbitMQSender;
 
     @GetMapping(value = "/test/{id}")
@@ -87,7 +87,6 @@ public class AtencionController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(atencion);
-    }
-
+    }*/
 
 }

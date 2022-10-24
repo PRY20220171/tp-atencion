@@ -26,15 +26,17 @@ public class ProducerServiceImpl implements ProducerService {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public Atencion sendMsg(String idAtencion) {
+    public String sendMsg(String idAtencion) {
         try {
             Object response = amqpTemplate.convertSendAndReceive(exchange.getName(), routingkey, idAtencion);
             if (response != null) {
-                return objectMapper.readValue(response.toString(), Atencion.class);
+                //return objectMapper.readValue(response.toString(), Atencion.class);
+                return response.toString();
             } else {
                 return null;
             }
         } catch (Exception e) {
+            System.out.println(e.toString());
             return null;
         }
     }
