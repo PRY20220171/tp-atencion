@@ -73,6 +73,7 @@ public class Acompanante implements Serializable {
     @NotNull(message = "La fecha de nacimiento no puede ser nulo")
     @Column("fecnac")
     @CassandraType(type = CassandraType.Name.DATE)
+    @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate fecnac;
 
     @ApiModelProperty(value = "Es el teléfono del acompanante del paciente", dataType = "ascii", position = 7)
