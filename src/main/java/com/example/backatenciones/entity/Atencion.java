@@ -1,6 +1,5 @@
 package com.example.backatenciones.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -58,7 +57,6 @@ public class Atencion implements Serializable {
     @NotNull(message = "La fecha de registro no puede ser nula")
     @Column("fecharegistro")
     @CassandraType(type = CassandraType.Name.DATE)
-    @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate fecharegistro;
 
     @ApiModelProperty(value = "Es la descripcion del motivo de la atencion", dataType = "text", position = 5)

@@ -1,6 +1,5 @@
 package com.example.backatenciones.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -93,6 +92,5 @@ public class FactoresRiesgo implements Serializable {
     @ApiModelProperty(value = "Es la fecha del ultimo dia de la regla del paciente - si tuviera", dataType = "date", position = 6)
     @Column("fecultregla")
     @CassandraType(type = CassandraType.Name.DATE)
-    @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate fecultregla;
 }
